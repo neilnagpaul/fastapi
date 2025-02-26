@@ -1,14 +1,12 @@
-from typing import Optional
-
 from fastapi import FastAPI
+from nicegui import ui
 
 app = FastAPI()
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+@ui.page("/")
+def index():
+    return ui.label("Hello, world!")
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+
+ui.run_with(app)
